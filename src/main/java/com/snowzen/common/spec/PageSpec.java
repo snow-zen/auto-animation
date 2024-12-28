@@ -1,7 +1,5 @@
 package com.snowzen.common.spec;
 
-import lombok.Getter;
-
 /**
  * 分页参数说明。
  *
@@ -9,6 +7,5 @@ import lombok.Getter;
  * @param size 分页大小。
  * @author snow-zen
  */
-@Getter
 public record PageSpec(int page, int size) {
 }
