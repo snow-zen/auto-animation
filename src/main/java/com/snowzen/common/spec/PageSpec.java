@@ -3,17 +3,12 @@ package com.snowzen.common.spec;
 import lombok.Getter;
 
 /**
+ * 分页参数说明。
+ *
+ * @param page 分页页码（从 0 开始）。
+ * @param size 分页大小。
  * @author snow-zen
  */
 @Getter
-public final class PageSpec {
-
-    private int page = 0;
-
-    private int size = 10;
-
-    public PageSpec(int page, int size) {
-        this.page = page;
-        this.size = size;
-    }
+public record PageSpec(int page, int size) {
 }
