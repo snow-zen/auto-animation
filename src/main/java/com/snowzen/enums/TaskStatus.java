@@ -24,5 +24,10 @@ public enum TaskStatus {
     /**
      * 完成。
      */
-    COMPLETED;
+    COMPLETED,
+
+    /**
+     * 取消。
+     */
+    CANCEL;
 }
