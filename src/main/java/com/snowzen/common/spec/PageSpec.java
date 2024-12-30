@@ -3,9 +3,9 @@ package com.snowzen.common.spec;
 /**
  * 分页参数说明。
  *
- * @param page 分页页码（从 0 开始）。
- * @param size 分页大小。
+ * @param pageIndex 分页页码（从 0 开始）。
+ * @param pageSize 分页大小。
  * @author snow-zen
  */
-public record PageSpec(int page, int size) {
+public record PageSpec(int pageIndex, int pageSize) {
 }
