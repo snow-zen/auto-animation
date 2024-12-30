@@ -31,10 +31,10 @@ public class TaskEntity {
     private Long id;
 
     /**
-     * 任务名称。
+     * 任务标题。
      */
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
     /**
      * 任务状态。
