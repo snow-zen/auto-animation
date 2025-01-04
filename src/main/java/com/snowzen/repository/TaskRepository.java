@@ -1,8 +1,10 @@
 package com.snowzen.repository;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.snowzen.common.result.PageResult;
 import com.snowzen.common.spec.PageSpec;
 import com.snowzen.common.util.PageUtil;
+import com.snowzen.entity.QTaskEntity;
 import com.snowzen.entity.TaskEntity;
 import com.snowzen.enums.TaskStatus;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -11,9 +13,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.transaction.Transactional;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,6 +29,9 @@ public class TaskRepository {
 
     @Inject
     EntityManager entityManager;
+
+    @Inject
+    JPAQueryFactory jpaQueryFactory;
 
     /**
      * 分页查询任务信息。
@@ -50,10 +55,12 @@ public class TaskRepository {
                                                Root<TaskEntity> root, String title, List<TaskStatus> statuses) {
         List<Predicate> result = new ArrayList<>();
         if (StringUtils.isNotEmpty(title)) {
-            result.add(criteriaBuilder.like(root.get("title"), "%" + title + "%"));
+            result.add(criteriaBuilder.like(
+                root.get(QTaskEntity.taskEntity.title.getMetadata().getName()),
+                "%" + title + "%"));
         }
         if (CollectionUtils.isNotEmpty(statuses)) {
-            result.add(root.get("status").in(statuses));
+            result.add(root.get(QTaskEntity.taskEntity.status.getMetadata().getName()).in(statuses));
         }
         return result;
     }
@@ -65,16 +72,8 @@ public class TaskRepository {
      */
     @Transactional(rollbackOn = Exception.class)
     public void deleteById(Long id) {
-        TaskEntity taskEntity = entityManager.find(TaskEntity.class, id);
-        if (taskEntity != null) {
-            delete(taskEntity);
-        }
-    }
-
-    /**
-     * 删除实体
-     */
-    private void delete(TaskEntity entity) {
-        entityManager.remove(entity);
+        jpaQueryFactory.delete(QTaskEntity.taskEntity)
+            .where(QTaskEntity.taskEntity.id.eq(id))
+            .execute();
     }
 }
