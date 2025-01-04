@@ -6,9 +6,11 @@ import com.snowzen.entity.TaskEntity;
 import com.snowzen.enums.TaskStatus;
 import com.snowzen.repository.TaskRepository;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
 import java.util.List;
 
@@ -39,5 +41,16 @@ public class TaskController {
                                        @QueryParam("title") String title,
                                        @QueryParam("status") List<TaskStatus> statuses) {
         return taskRepository.page(new PageSpec(pageIndex, pageSize), title, statuses);
+    }
+
+    /**
+     * 通过任务 id 删除指定任务。
+     *
+     * @param id 任务 id 不能为空。
+     */
+    @DELETE
+    @Path("/{id}")
+    public void deleteById(@PathParam("id") Long id) {
+        taskRepository.deleteById(id);
     }
 }

@@ -13,6 +13,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.transaction.Transactional;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -55,5 +56,25 @@ public class TaskRepository {
             result.add(root.get("status").in(statuses));
         }
         return result;
+    }
+
+    /**
+     * 通过主键 id 删除对应实体。
+     *
+     * @param id 主键 id。
+     */
+    @Transactional(rollbackOn = Exception.class)
+    public void deleteById(Long id) {
+        TaskEntity taskEntity = entityManager.find(TaskEntity.class, id);
+        if (taskEntity != null) {
+            delete(taskEntity);
+        }
+    }
+
+    /**
+     * 删除实体
+     */
+    private void delete(TaskEntity entity) {
+        entityManager.remove(entity);
     }
 }
