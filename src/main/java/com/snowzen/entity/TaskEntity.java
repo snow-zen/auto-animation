@@ -1,6 +1,7 @@
 package com.snowzen.entity;
 
 import com.snowzen.enums.TaskStatus;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,8 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 /**
  * 任务实体。
@@ -42,4 +45,11 @@ public class TaskEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private TaskStatus status;
+
+    /**
+     * 任务标签，JSON 数据格式。
+     */
+    @Type(JsonType.class)
+    @Column(name = "labels", columnDefinition = "json")
+    private Map<String, String> labels;
 }
