@@ -6,6 +6,8 @@ import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 
 /**
+ * QueryDSL 相关配置。
+ *
  * @author snow-zen
  */
 public class QueryDslConfiguration {
