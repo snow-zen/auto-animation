@@ -1,6 +1,6 @@
-package com.snowzen.entity;
+package com.snowzen.task.entity;
 
-import com.snowzen.enums.TaskStatus;
+import com.snowzen.task.enums.TaskStatus;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

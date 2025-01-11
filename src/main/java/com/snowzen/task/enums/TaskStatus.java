@@ -1,4 +1,4 @@
-package com.snowzen.enums;
+package com.snowzen.task.enums;
 
 /**
  * 任务状态枚举。

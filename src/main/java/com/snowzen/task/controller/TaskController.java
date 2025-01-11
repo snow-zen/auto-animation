@@ -1,10 +1,10 @@
-package com.snowzen.controller;
+package com.snowzen.task.controller;
 
 import com.snowzen.common.result.PageResult;
 import com.snowzen.common.spec.PageSpec;
-import com.snowzen.entity.TaskEntity;
-import com.snowzen.enums.TaskStatus;
-import com.snowzen.repository.TaskRepository;
+import com.snowzen.task.entity.TaskEntity;
+import com.snowzen.task.enums.TaskStatus;
+import com.snowzen.task.repository.TaskRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
