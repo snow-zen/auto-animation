@@ -4,7 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.snowzen.common.result.PageResult;
 import com.snowzen.common.spec.PageSpec;
 import com.snowzen.common.util.PageUtil;
-import com.snowzen.entity.QTaskEntity;
+import com.snowzen.task.entity.QTaskEntity;
 import com.snowzen.task.entity.TaskEntity;
 import com.snowzen.task.enums.TaskStatus;
 import jakarta.enterprise.context.ApplicationScoped;
