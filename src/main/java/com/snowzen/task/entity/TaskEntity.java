@@ -34,12 +34,6 @@ public class TaskEntity {
     private Long id;
 
     /**
-     * 任务标题。
-     */
-    @Column(name = "title")
-    private String title;
-
-    /**
      * 任务状态。
      */
     @Enumerated(EnumType.STRING)
