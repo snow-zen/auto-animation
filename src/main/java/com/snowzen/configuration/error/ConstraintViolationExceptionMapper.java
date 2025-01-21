@@ -1,6 +1,7 @@
 package com.snowzen.configuration.error;
 
 import com.snowzen.common.ApiResponse;
+import com.snowzen.common.ApiResponseStatus;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
@@ -26,7 +27,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
             ));
         return Response.status(Response.Status.BAD_REQUEST)
             .entity(ApiResponse.build(
-                ApiResponse.Status.VIOLATION_FAIL,
+                ApiResponseStatus.VIOLATION_FAIL,
                 "Parameter validation failed",
                 violations
             ))

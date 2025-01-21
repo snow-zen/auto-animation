@@ -3,6 +3,7 @@ package com.snowzen.configuration.error;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.snowzen.common.ApiResponse;
+import com.snowzen.common.ApiResponseStatus;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -25,7 +26,7 @@ public class MismatchInputExceptionMapper implements ExceptionMapper<MismatchedI
         return Response.status(Response.Status.BAD_REQUEST)
             .entity(
                 ApiResponse.build(
-                    ApiResponse.Status.INVALID_INPUT,
+                    ApiResponseStatus.INVALID_INPUT,
                     "Invalid input",
                     Map.of("errorAttributes", attributes)
                 )

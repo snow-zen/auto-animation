@@ -1,6 +1,7 @@
 package com.snowzen.configuration.error;
 
 import com.snowzen.common.ApiResponse;
+import com.snowzen.common.ApiResponseStatus;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -17,7 +18,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             .entity(
                 ApiResponse.buildWithoutDetail(
-                    ApiResponse.Status.INTERNAL_SERVER_ERROR,
+                    ApiResponseStatus.INTERNAL_SERVER_ERROR,
                     "未知异常"
                 )
             )

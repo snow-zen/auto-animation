@@ -13,7 +13,7 @@ public class ApiResponse<T> {
     /**
      * api 响应代码。
      */
-    private final Status code;
+    private final ApiResponseStatus code;
 
     /**
      * 响应消息。
@@ -25,31 +25,22 @@ public class ApiResponse<T> {
      */
     private final T detail;
 
-    private ApiResponse(Status code, String message) {
+    private ApiResponse(ApiResponseStatus code, String message) {
         this(code, message, null);
     }
 
-    private ApiResponse(Status code, String message, T detail) {
+    private ApiResponse(ApiResponseStatus code, String message, T detail) {
         this.code = code;
         this.message = message;
         this.detail = detail;
     }
 
-    public static <T> ApiResponse<T> build(Status status, String message, T detail) {
+    public static <T> ApiResponse<T> build(ApiResponseStatus status, String message, T detail) {
         return new ApiResponse<>(status, message, detail);
     }
 
-    public static ApiResponse<Void> buildWithoutDetail(Status status, String message) {
+    public static ApiResponse<Void> buildWithoutDetail(ApiResponseStatus status, String message) {
         return new ApiResponse<>(status, message);
-    }
-
-    /**
-     * api 响应状态枚举。
-     */
-    public enum Status {
-        VIOLATION_FAIL,
-        INVALID_INPUT,
-        INTERNAL_SERVER_ERROR
     }
 
 }
