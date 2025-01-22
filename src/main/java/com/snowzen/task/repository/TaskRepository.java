@@ -4,6 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.snowzen.common.result.PageResult;
 import com.snowzen.common.spec.PageSpec;
 import com.snowzen.common.util.PageUtil;
+import com.snowzen.task.TaskLabelConstant;
 import com.snowzen.task.entity.QTaskEntity;
 import com.snowzen.task.entity.TaskEntity;
 import com.snowzen.task.enums.TaskStatus;
@@ -16,6 +17,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -56,13 +58,47 @@ public class TaskRepository {
         List<Predicate> result = new ArrayList<>();
         if (StringUtils.isNotEmpty(title)) {
             result.add(criteriaBuilder.like(
-                root.get(QTaskEntity.taskEntity.title.getMetadata().getName()),
+                criteriaBuilder.function(
+                    "JSON_EXTRACT", String.class,
+                    root.get(QTaskEntity.taskEntity.labels.getMetadata().getName()),
+                    criteriaBuilder.literal("$." + TaskLabelConstant.TASK_TYPE)
+                ),
                 "%" + title + "%"));
         }
         if (CollectionUtils.isNotEmpty(statuses)) {
             result.add(root.get(QTaskEntity.taskEntity.status.getMetadata().getName()).in(statuses));
         }
         return result;
+    }
+
+    /**
+     * 通过任务 id 查询任务数据。
+     *
+     * @param id 任务 id。
+     * @return 任务数据对应 {@link Optional} 包装对象。
+     */
+    public Optional<TaskEntity> selectById(Long id) {
+        return Optional.ofNullable(entityManager.find(TaskEntity.class, id));
+    }
+
+    /**
+     * 保存任务数据。
+     *
+     * @param taskEntity 任务。
+     */
+    @Transactional(rollbackOn = Exception.class)
+    public void insert(TaskEntity taskEntity) {
+        entityManager.persist(taskEntity);
+    }
+
+    /**
+     * 更新任务数据。
+     *
+     * @param taskEntity 任务。
+     */
+    @Transactional(rollbackOn = Exception.class)
+    public void update(TaskEntity taskEntity) {
+        entityManager.merge(taskEntity);
     }
 
     /**

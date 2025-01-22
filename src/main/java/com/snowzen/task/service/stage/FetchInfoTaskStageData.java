@@ -1,4 +1,4 @@
-package com.snowzen.task.controller.payload;
+package com.snowzen.task.service.stage;
 
 import com.snowzen.common.enums.MetaPlatform;
 import com.snowzen.common.enums.ResourceLinkType;
@@ -9,13 +9,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 抓取信息 Payload。
+ * 抓取信息任务阶段数据。
  *
  * @author snow-zen
  */
 @Getter
 @Setter
-public class FetchInfoPayload {
+public class FetchInfoTaskStageData extends AbstractTaskStageData {
 
     /**
      * 元数据。

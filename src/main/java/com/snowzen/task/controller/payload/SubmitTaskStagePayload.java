@@ -1,6 +1,6 @@
 package com.snowzen.task.controller.payload;
 
-import com.snowzen.task.enums.TaskStages;
+import com.snowzen.task.service.stage.AbstractTaskStageData;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,14 +20,8 @@ public class SubmitTaskStagePayload {
     private Long taskId;
 
     /**
-     * 任务阶段标识。
-     */
-    @NotNull
-    private TaskStages stage;
-
-    /**
      * 任务阶段数据。
      */
     @NotNull
-    private Object data;
+    private AbstractTaskStageData stage;
 }
