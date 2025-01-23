@@ -53,10 +53,12 @@ public class FetchInfoTaskStageData extends AbstractTaskStageData {
         /**
          * 链接类型。
          */
+        @NotNull
         private ResourceLinkType linkType;
         /**
          * 链接。
          */
+        @NotNull
         private String link;
     }
 }
