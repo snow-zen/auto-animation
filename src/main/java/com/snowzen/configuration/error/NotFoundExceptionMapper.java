@@ -8,6 +8,8 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 /**
+ * {@link NotFoundException} 异常对应的异常处理器。
+ *
  * @author snow-zen
  */
 @Provider
