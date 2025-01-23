@@ -14,7 +14,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
  * @author snow-zen、
  * @see <a href="https://bangumi.github.io/api/">Bangumi API</a>
  */
-@RegisterRestClient
+@RegisterRestClient(configKey = "bangumi-api")
 @Path("/v0/subjects/{subjectId}")
 public interface SubjectApi {
 
