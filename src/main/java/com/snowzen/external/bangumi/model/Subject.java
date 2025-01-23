@@ -62,7 +62,7 @@ public class Subject {
      * 封面图片。
      */
     @JsonProperty("images")
-    private ImageAsset images;
+    private ImageData images;
 
     /**
      * 总集数。

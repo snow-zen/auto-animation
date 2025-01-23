@@ -43,7 +43,7 @@ public class SubjectRelation {
      * 封面图片。
      */
     @JsonProperty("images")
-    private ImageAsset images;
+    private ImageData images;
 
     /**
      * 关联描述。

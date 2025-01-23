@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ImageAsset {
+public class ImageData {
 
     private String large;
 
