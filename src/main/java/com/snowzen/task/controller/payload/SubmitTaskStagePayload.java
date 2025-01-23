@@ -15,11 +15,6 @@ import lombok.Setter;
 public class SubmitTaskStagePayload {
 
     /**
-     * 任务 id，如果为 null 则创建对应的任务。
-     */
-    private Long taskId;
-
-    /**
      * 任务阶段数据。
      */
     @NotNull
