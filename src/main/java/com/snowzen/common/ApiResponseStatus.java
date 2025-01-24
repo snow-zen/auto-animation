@@ -17,6 +17,10 @@ public enum ApiResponseStatus {
      */
     DATA_NOT_FOUND,
     /**
+     * 任务阶段执行失败。
+     */
+    TASK_STAGE_EXECUTE_FAIL,
+    /**
      * 任务阶段数据无法转换。
      */
     TASK_STAGE_DATA_CANNOT_BE_CONVERT,
