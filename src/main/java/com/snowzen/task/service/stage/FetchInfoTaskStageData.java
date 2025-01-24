@@ -30,9 +30,12 @@ public class FetchInfoTaskStageData extends AbstractTaskStageData {
     @Valid
     private List<ResourceLink> candidateResourceLinks;
 
+    /**
+     * 元数据。
+     */
     @Getter
     @Setter
-    private static class Meta {
+    public static class Meta {
 
         /**
          * 元数据平台。
@@ -47,9 +50,12 @@ public class FetchInfoTaskStageData extends AbstractTaskStageData {
         private String target;
     }
 
+    /**
+     * 资源链接。
+     */
     @Getter
     @Setter
-    private static class ResourceLink {
+    public static class ResourceLink {
         /**
          * 链接类型。
          */
